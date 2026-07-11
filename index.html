@@ -46,14 +46,8 @@
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .auth-logo {
@@ -109,9 +103,7 @@
             box-shadow: 0 0 20px rgba(255, 165, 0, 0.15);
         }
 
-        .auth-input::placeholder {
-            color: #666;
-        }
+        .auth-input::placeholder { color: #666; }
 
         .auth-btn {
             width: 100%;
@@ -153,31 +145,6 @@
             display: none;
         }
 
-        .auth-divider {
-            text-align: center;
-            color: #666;
-            margin: 20px 0;
-            position: relative;
-        }
-
-        .auth-divider::before,
-        .auth-divider::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 40%;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .auth-divider::before {
-            left: 0;
-        }
-
-        .auth-divider::after {
-            right: 0;
-        }
-
         .auth-toggle {
             text-align: center;
             margin-top: 15px;
@@ -192,9 +159,7 @@
             font-weight: 600;
         }
 
-        .auth-toggle a:hover {
-            text-decoration: underline;
-        }
+        .auth-toggle a:hover { text-decoration: underline; }
 
         /* Container chính */
         .container {
@@ -259,9 +224,7 @@
             transition: all 0.3s ease;
         }
 
-        .btn-logout:hover {
-            background: rgba(255, 71, 87, 0.2);
-        }
+        .btn-logout:hover { background: rgba(255, 71, 87, 0.2); }
 
         h1 {
             font-size: 28px;
@@ -334,9 +297,7 @@
             transition: transform 0.3s ease;
         }
 
-        .stat-card:hover {
-            transform: translateY(-2px);
-        }
+        .stat-card:hover { transform: translateY(-2px); }
 
         .stat-number {
             font-size: 32px;
@@ -375,9 +336,7 @@
             box-shadow: 0 0 20px rgba(255, 165, 0, 0.2);
         }
 
-        .search-input::placeholder {
-            color: #888;
-        }
+        .search-input::placeholder { color: #888; }
 
         .search-icon {
             position: absolute;
@@ -409,9 +368,7 @@
             justify-content: center;
         }
 
-        .btn:active {
-            transform: scale(0.95);
-        }
+        .btn:active { transform: scale(0.95); }
 
         .btn-block-all {
             background: linear-gradient(135deg, #ff4757, #ff3838);
@@ -443,9 +400,7 @@
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        .btn-refresh:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
+        .btn-refresh:hover { background: rgba(255, 255, 255, 0.2); }
 
         .loading-container {
             text-align: center;
@@ -476,19 +431,9 @@
             padding-right: 5px;
         }
 
-        .udid-list::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .udid-list::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-        }
-
-        .udid-list::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-        }
+        .udid-list::-webkit-scrollbar { width: 6px; }
+        .udid-list::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); border-radius: 10px; }
+        .udid-list::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 10px; }
 
         .udid-item {
             background: rgba(255, 255, 255, 0.06);
@@ -505,14 +450,8 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .udid-item:hover {
@@ -594,9 +533,7 @@
             white-space: nowrap;
         }
 
-        .btn-action:active {
-            transform: scale(0.9);
-        }
+        .btn-action:active { transform: scale(0.9); }
 
         .btn-block {
             background: #ff4757;
@@ -654,19 +591,14 @@
         }
 
         @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
 
         .notification.success { background: #2ed573; }
         .notification.error { background: #ff4757; }
         .notification.info { background: #3498db; }
+        .notification.warning { background: #ffa500; }
 
         .confirm-overlay {
             position: fixed;
@@ -693,16 +625,8 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
-        .confirm-modal h3 {
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
-
-        .confirm-modal p {
-            margin-bottom: 20px;
-            color: #ccc;
-            line-height: 1.5;
-        }
+        .confirm-modal h3 { margin-bottom: 15px; font-size: 20px; }
+        .confirm-modal p { margin-bottom: 20px; color: #ccc; line-height: 1.5; }
 
         .confirm-buttons {
             display: flex;
@@ -738,10 +662,7 @@
             color: #ff4757;
         }
 
-        .error-container .icon {
-            font-size: 60px;
-            margin-bottom: 15px;
-        }
+        .error-container .icon { font-size: 60px; margin-bottom: 15px; }
 
         .last-update {
             text-align: center;
@@ -750,38 +671,25 @@
             margin-top: 20px;
         }
 
+        .blocked-badge {
+            display: inline-block;
+            background: rgba(255, 71, 87, 0.2);
+            color: #ff4757;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+
         @media (max-width: 600px) {
-            .container {
-                padding: 20px 15px;
-            }
-            
-            .udid-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .udid-actions {
-                width: 100%;
-                justify-content: flex-end;
-            }
-            
-            .btn {
-                padding: 10px 16px;
-                font-size: 13px;
-            }
-            
-            .stats {
-                flex-direction: column;
-            }
-
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .auth-container {
-                padding: 25px;
-            }
+            .container { padding: 20px 15px; }
+            .udid-item { flex-direction: column; align-items: flex-start; }
+            .udid-actions { width: 100%; justify-content: flex-end; }
+            .btn { padding: 10px 16px; font-size: 13px; }
+            .stats { flex-direction: column; }
+            .header { flex-direction: column; align-items: flex-start; }
+            .auth-container { padding: 25px; }
         }
     </style>
 </head>
@@ -843,7 +751,7 @@
         </div>
     </div>
 
-    <!-- Giao diện chính (ẩn khi chưa đăng nhập) -->
+    <!-- Giao diện chính -->
     <div class="container" id="mainContainer">
         <div class="header">
             <h1>🔒 Quản Lý UDID</h1>
@@ -867,7 +775,7 @@
         <div class="stats">
             <div class="stat-card stat-total">
                 <div class="stat-number" id="totalCount">0</div>
-                <div class="stat-label">📱 Tổng số</div>
+                <div class="stat-label">📱 Tổng thiết bị</div>
             </div>
             <div class="stat-card stat-blocked">
                 <div class="stat-number" id="blockedCount">0</div>
@@ -891,7 +799,7 @@
             <button class="btn btn-unblock-all" onclick="confirmUnblockAll()">
                 ✅ Mở khóa tất cả
             </button>
-            <button class="btn btn-refresh" onclick="loadDevices()">
+            <button class="btn btn-refresh" onclick="loadAllData()">
                 🔄 Làm mới
             </button>
         </div>
@@ -929,10 +837,11 @@
         let auth;
         let database;
         let devicesRef;
+        let blockedRef;
         let allDevices = {};
+        let blockedUDIDs = {};  // Danh sách UDID bị chặn (từ blocked_udids)
         let isConnected = false;
         let currentUser = null;
-        let authListenersSetup = false;
 
         // ============================================================
         // KHỞI TẠO FIREBASE
@@ -943,8 +852,11 @@
                 auth = firebase.auth();
                 database = firebase.database();
                 devicesRef = database.ref('devices');
+                blockedRef = database.ref('blocked_udids');  // Reference tới blocked_udids
                 
                 console.log('✅ Firebase đã được khởi tạo');
+                console.log('📁 Devices path:', 'devices/');
+                console.log('🚫 Blocked path:', 'blocked_udids/');
                 
                 // Lắng nghe trạng thái xác thực
                 setupAuthListener();
@@ -963,12 +875,10 @@
                 currentUser = user;
                 
                 if (user) {
-                    // Người dùng đã đăng nhập
                     console.log('👤 Đã đăng nhập:', user.email);
                     document.getElementById('authOverlay').style.display = 'none';
                     document.getElementById('mainContainer').style.display = 'block';
                     
-                    // Cập nhật thông tin người dùng
                     document.getElementById('userEmail').textContent = user.email;
                     const avatar = document.getElementById('userAvatar');
                     avatar.textContent = user.email.charAt(0).toUpperCase();
@@ -978,16 +888,15 @@
                     
                     showNotification('✅ Đăng nhập thành công!', 'success');
                 } else {
-                    // Người dùng chưa đăng nhập
                     console.log('👤 Chưa đăng nhập');
                     document.getElementById('authOverlay').style.display = 'flex';
                     document.getElementById('mainContainer').style.display = 'none';
                     
                     // Xóa listener database nếu có
-                    if (devicesRef) {
-                        devicesRef.off();
-                    }
+                    if (devicesRef) devicesRef.off();
+                    if (blockedRef) blockedRef.off();
                     allDevices = {};
+                    blockedUDIDs = {};
                 }
             });
         }
@@ -1002,29 +911,52 @@
                 updateConnectionStatus();
             });
 
-            // Lắng nghe thay đổi realtime từ Firebase
+            // Lắng nghe danh sách devices
             devicesRef.on('value', (snapshot) => {
                 const data = snapshot.val();
                 allDevices = data || {};
+                console.log('📱 Devices loaded:', Object.keys(allDevices).length);
                 renderUDIDList();
-                updateConnectionStatus();
             }, (error) => {
-                console.error('Lỗi Firebase:', error);
-                if (error.code === 'PERMISSION_DENIED') {
-                    showNotification('❌ Bạn không có quyền truy cập dữ liệu này', 'error');
-                } else {
-                    showNotification('❌ Lỗi kết nối Firebase: ' + error.message, 'error');
-                }
-                document.getElementById('udidList').innerHTML = `
-                    <div class="error-container">
-                        <div class="icon">⚠️</div>
-                        <h3>Không thể kết nối Firebase</h3>
-                        <p style="color: #aaa;">${error.message}</p>
-                        <button class="btn btn-refresh" onclick="setupDatabaseListeners()" style="margin-top: 15px;">
-                            🔄 Thử lại
-                        </button>
-                    </div>
-                `;
+                console.error('❌ Lỗi tải devices:', error);
+                handleDatabaseError(error);
+            });
+
+            // Lắng nghe danh sách blocked_udids
+            blockedRef.on('value', (snapshot) => {
+                const data = snapshot.val();
+                blockedUDIDs = data || {};
+                console.log('🚫 Blocked UDIDs loaded:', Object.keys(blockedUDIDs).length);
+                renderUDIDList();
+            }, (error) => {
+                console.error('❌ Lỗi tải blocked_udids:', error);
+                handleDatabaseError(error);
+            });
+            
+            updateConnectionStatus();
+        }
+
+        function handleDatabaseError(error) {
+            if (error.code === 'PERMISSION_DENIED') {
+                showNotification('❌ Bạn không có quyền truy cập dữ liệu này', 'error');
+            } else {
+                showNotification('❌ Lỗi kết nối: ' + error.message, 'error');
+            }
+        }
+
+        function loadAllData() {
+            if (!currentUser) return;
+            
+            Promise.all([
+                devicesRef.once('value'),
+                blockedRef.once('value')
+            ]).then(([devicesSnap, blockedSnap]) => {
+                allDevices = devicesSnap.val() || {};
+                blockedUDIDs = blockedSnap.val() || {};
+                renderUDIDList();
+                showNotification('✅ Dữ liệu đã được làm mới', 'success');
+            }).catch((error) => {
+                showNotification('❌ Lỗi tải dữ liệu: ' + error.message, 'error');
             });
         }
 
@@ -1061,13 +993,11 @@
             const errorEl = document.getElementById('loginError');
             const btn = document.getElementById('loginBtn');
 
-            // Validate
             if (!email || !password) {
                 showAuthError(errorEl, 'Vui lòng nhập đầy đủ email và mật khẩu');
                 return;
             }
 
-            // Disable button
             btn.disabled = true;
             btn.textContent = 'Đang đăng nhập...';
             errorEl.style.display = 'none';
@@ -1077,31 +1007,7 @@
                 console.log('✅ Đăng nhập thành công');
             } catch (error) {
                 console.error('❌ Lỗi đăng nhập:', error);
-                let message = 'Đăng nhập thất bại';
-                
-                switch (error.code) {
-                    case 'auth/invalid-email':
-                        message = 'Email không hợp lệ';
-                        break;
-                    case 'auth/user-disabled':
-                        message = 'Tài khoản đã bị vô hiệu hóa';
-                        break;
-                    case 'auth/user-not-found':
-                        message = 'Không tìm thấy tài khoản với email này';
-                        break;
-                    case 'auth/wrong-password':
-                        message = 'Mật khẩu không chính xác';
-                        break;
-                    case 'auth/invalid-credential':
-                        message = 'Email hoặc mật khẩu không chính xác';
-                        break;
-                    case 'auth/too-many-requests':
-                        message = 'Quá nhiều lần thử. Vui lòng thử lại sau';
-                        break;
-                    default:
-                        message = error.message;
-                }
-                
+                let message = getAuthErrorMessage(error.code);
                 showAuthError(errorEl, message);
             } finally {
                 btn.disabled = false;
@@ -1116,7 +1022,6 @@
             const errorEl = document.getElementById('registerError');
             const btn = document.getElementById('registerBtn');
 
-            // Validate
             if (!email || !password || !confirmPassword) {
                 showAuthError(errorEl, 'Vui lòng nhập đầy đủ thông tin');
                 return;
@@ -1132,7 +1037,6 @@
                 return;
             }
 
-            // Disable button
             btn.disabled = true;
             btn.textContent = 'Đang đăng ký...';
             errorEl.style.display = 'none';
@@ -1143,30 +1047,27 @@
                 showNotification('✅ Đăng ký thành công! Bạn đã tự động đăng nhập.', 'success');
             } catch (error) {
                 console.error('❌ Lỗi đăng ký:', error);
-                let message = 'Đăng ký thất bại';
-                
-                switch (error.code) {
-                    case 'auth/email-already-in-use':
-                        message = 'Email này đã được sử dụng';
-                        break;
-                    case 'auth/invalid-email':
-                        message = 'Email không hợp lệ';
-                        break;
-                    case 'auth/operation-not-allowed':
-                        message = 'Đăng ký không được phép. Vui lòng liên hệ admin';
-                        break;
-                    case 'auth/weak-password':
-                        message = 'Mật khẩu quá yếu. Vui lòng chọn mật khẩu mạnh hơn';
-                        break;
-                    default:
-                        message = error.message;
-                }
-                
+                let message = getAuthErrorMessage(error.code);
                 showAuthError(errorEl, message);
             } finally {
                 btn.disabled = false;
                 btn.textContent = 'Đăng Ký';
             }
+        }
+
+        function getAuthErrorMessage(code) {
+            const messages = {
+                'auth/invalid-email': 'Email không hợp lệ',
+                'auth/user-disabled': 'Tài khoản đã bị vô hiệu hóa',
+                'auth/user-not-found': 'Không tìm thấy tài khoản với email này',
+                'auth/wrong-password': 'Mật khẩu không chính xác',
+                'auth/invalid-credential': 'Email hoặc mật khẩu không chính xác',
+                'auth/too-many-requests': 'Quá nhiều lần thử. Vui lòng thử lại sau',
+                'auth/email-already-in-use': 'Email này đã được sử dụng',
+                'auth/operation-not-allowed': 'Đăng ký không được phép. Vui lòng liên hệ admin',
+                'auth/weak-password': 'Mật khẩu quá yếu. Vui lòng chọn mật khẩu mạnh hơn'
+            };
+            return messages[code] || 'Lỗi xác thực: ' + code;
         }
 
         function showAuthError(element, message) {
@@ -1184,7 +1085,7 @@
             }
         }
 
-        // Cho phép nhấn Enter để đăng nhập
+        // Enter để đăng nhập/đăng ký
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Enter') {
                 const authOverlay = document.getElementById('authOverlay');
@@ -1202,39 +1103,49 @@
         });
 
         // ============================================================
-        // KẾT NỐI DATABASE
+        // KIỂM TRA TRẠNG THÁI BLOCK
         // ============================================================
-        function updateConnectionStatus() {
-            const statusEl = document.getElementById('connectionStatus');
-            const statusDot = document.getElementById('statusDot');
-            const statusText = document.getElementById('statusText');
-
-            if (isConnected) {
-                statusEl.className = 'connection-status status-connected';
-                statusDot.className = 'status-dot dot-connected';
-                statusText.textContent = 'Đã kết nối';
-            } else {
-                statusEl.className = 'connection-status status-disconnected';
-                statusDot.className = 'status-dot dot-disconnected';
-                statusText.textContent = 'Mất kết nối';
+        function isUDIDBlocked(udid) {
+            // Kiểm tra trong blocked_udids
+            if (blockedUDIDs[udid]) {
+                const blockData = blockedUDIDs[udid];
+                // Kiểm tra các trường block
+                if (blockData.blocked === true) return true;
+                if (blockData.banned === true) return true;
+                if (blockData.kill_switch === true) return true;
+                
+                // Kiểm tra expiry
+                if (blockData.expiry) {
+                    const now = Math.floor(Date.now() / 1000);
+                    if (blockData.expiry > now) return true;
+                }
+                
+                // Nếu có trong blocked_udids nhưng không có flag block nào = true
+                // thì coi như đã bị block (tồn tại trong danh sách blocked)
+                return true;
             }
+            return false;
         }
 
-        function loadDevices() {
-            if (devicesRef && currentUser) {
-                devicesRef.once('value').then((snapshot) => {
-                    allDevices = snapshot.val() || {};
-                    renderUDIDList();
-                }).catch((error) => {
-                    showNotification('❌ Lỗi tải dữ liệu: ' + error.message, 'error');
-                });
-            }
+        function getBlockReason(udid) {
+            if (!blockedUDIDs[udid]) return null;
+            const data = blockedUDIDs[udid];
+            const reasons = [];
+            if (data.blocked) reasons.push('blocked');
+            if (data.banned) reasons.push('banned');
+            if (data.kill_switch) reasons.push('kill_switch');
+            if (data.expiry && data.expiry > Math.floor(Date.now() / 1000)) reasons.push('expiry');
+            return reasons.length > 0 ? reasons.join(', ') : 'in list';
         }
 
         // ============================================================
         // THÔNG BÁO
         // ============================================================
         function showNotification(message, type = 'success') {
+            // Xóa notification cũ
+            const existing = document.querySelectorAll('.notification');
+            existing.forEach(n => n.remove());
+            
             const notification = document.createElement('div');
             notification.className = `notification ${type}`;
             notification.textContent = message;
@@ -1250,6 +1161,10 @@
         // XÁC NHẬN
         // ============================================================
         function showConfirm(title, message, onConfirm) {
+            // Xóa confirm cũ nếu có
+            const existing = document.querySelectorAll('.confirm-overlay');
+            existing.forEach(e => e.remove());
+            
             const overlay = document.createElement('div');
             overlay.className = 'confirm-overlay';
             overlay.innerHTML = `
@@ -1286,7 +1201,7 @@
             }
             
             const udids = Object.keys(allDevices);
-            const unblockedCount = udids.filter(udid => !allDevices[udid].blocked).length;
+            const unblockedCount = udids.filter(udid => !isUDIDBlocked(udid)).length;
             
             if (udids.length === 0) {
                 showNotification('❌ Không có UDID nào', 'error');
@@ -1300,7 +1215,7 @@
 
             showConfirm(
                 '⚠️ Chặn tất cả UDID',
-                `Bạn có chắc muốn chặn ${unblockedCount} UDID đang hoạt động?<br>Tổng số UDID: ${udids.length}`,
+                `Bạn có chắc muốn chặn <b>${unblockedCount}</b> UDID đang hoạt động?<br>Tổng số thiết bị: <b>${udids.length}</b><br><br><small style="color: #ffa500;">UDID sẽ được thêm vào blocked_udids/</small>`,
                 blockAllUDIDs
             );
         }
@@ -1311,13 +1226,7 @@
                 return;
             }
             
-            const udids = Object.keys(allDevices);
-            const blockedCount = udids.filter(udid => allDevices[udid].blocked).length;
-            
-            if (udids.length === 0) {
-                showNotification('❌ Không có UDID nào', 'error');
-                return;
-            }
+            const blockedCount = Object.keys(blockedUDIDs).length;
             
             if (blockedCount === 0) {
                 showNotification('ℹ️ Không có UDID nào bị chặn', 'info');
@@ -1326,32 +1235,44 @@
 
             showConfirm(
                 '🔓 Mở khóa tất cả UDID',
-                `Bạn có chắc muốn mở khóa ${blockedCount} UDID đang bị chặn?<br>Tổng số UDID: ${udids.length}`,
+                `Bạn có chắc muốn mở khóa <b>${blockedCount}</b> UDID đang bị chặn?<br><br><small style="color: #ffa500;">UDID sẽ bị xóa khỏi blocked_udids/</small>`,
                 unblockAllUDIDs
             );
         }
 
         // ============================================================
-        // THAO TÁC DATABASE
+        // THAO TÁC BLOCK/UNBLOCK
         // ============================================================
         async function blockAllUDIDs() {
             if (!currentUser) return;
             
             try {
                 const updates = {};
+                const now = Math.floor(Date.now() / 1000);
+                let blockCount = 0;
+                
                 for (let udid in allDevices) {
-                    if (!allDevices[udid].blocked) {
-                        updates[`devices/${udid}/blocked`] = true;
-                        updates[`devices/${udid}/banned`] = true;
-                        updates[`devices/${udid}/kill_switch`] = true;
+                    if (!isUDIDBlocked(udid)) {
+                        updates[`blocked_udids/${udid}`] = {
+                            blocked: true,
+                            banned: true,
+                            kill_switch: true,
+                            blocked_at: now,
+                            blocked_by: currentUser.email,
+                            udid: udid
+                        };
+                        blockCount++;
                     }
                 }
 
                 if (Object.keys(updates).length > 0) {
                     await database.ref().update(updates);
-                    showNotification(`✅ Đã chặn thành công ${Object.keys(updates).length / 3} UDID`);
+                    showNotification(`✅ Đã chặn thành công ${blockCount} UDID`, 'success');
+                } else {
+                    showNotification('ℹ️ Không có UDID mới nào cần chặn', 'info');
                 }
             } catch (error) {
+                console.error('❌ Lỗi chặn tất cả:', error);
                 showNotification('❌ Lỗi: ' + error.message, 'error');
             }
         }
@@ -1360,20 +1281,18 @@
             if (!currentUser) return;
             
             try {
-                const updates = {};
-                for (let udid in allDevices) {
-                    if (allDevices[udid].blocked) {
-                        updates[`devices/${udid}/blocked`] = false;
-                        updates[`devices/${udid}/banned`] = false;
-                        updates[`devices/${udid}/kill_switch`] = false;
-                    }
+                const blockedKeys = Object.keys(blockedUDIDs);
+                
+                if (blockedKeys.length === 0) {
+                    showNotification('ℹ️ Không có UDID nào bị chặn', 'info');
+                    return;
                 }
 
-                if (Object.keys(updates).length > 0) {
-                    await database.ref().update(updates);
-                    showNotification(`✅ Đã mở khóa thành công ${Object.keys(updates).length / 3} UDID`);
-                }
+                // Xóa tất cả khỏi blocked_udids
+                await blockedRef.remove();
+                showNotification(`✅ Đã mở khóa thành công ${blockedKeys.length} UDID`, 'success');
             } catch (error) {
+                console.error('❌ Lỗi mở khóa tất cả:', error);
                 showNotification('❌ Lỗi: ' + error.message, 'error');
             }
         }
@@ -1385,23 +1304,36 @@
             }
             
             try {
-                const device = allDevices[udid];
-                if (!device) return;
-                
-                const newBlockedState = !device.blocked;
-                
-                const updates = {
-                    [`devices/${udid}/blocked`]: newBlockedState,
-                    [`devices/${udid}/banned`]: newBlockedState,
-                    [`devices/${udid}/kill_switch`]: newBlockedState
-                };
-                
-                await database.ref().update(updates);
-                
-                const status = newBlockedState ? 'đã chặn' : 'đã mở khóa';
+                const isBlocked = isUDIDBlocked(udid);
+                const now = Math.floor(Date.now() / 1000);
                 const shortUDID = udid.length > 16 ? udid.substring(0, 16) + '...' : udid;
-                showNotification(`✅ Đã ${status}: ${shortUDID}`);
+
+                if (isBlocked) {
+                    // Mở khóa: Xóa khỏi blocked_udids
+                    await blockedRef.child(udid).remove();
+                    showNotification(`✅ Đã mở khóa: ${shortUDID}`, 'success');
+                } else {
+                    // Chặn: Thêm vào blocked_udids
+                    const blockData = {
+                        blocked: true,
+                        banned: true,
+                        kill_switch: true,
+                        blocked_at: now,
+                        blocked_by: currentUser.email,
+                        udid: udid
+                    };
+                    
+                    // Nếu có thông tin từ devices, giữ lại một số thông tin
+                    if (allDevices[udid]) {
+                        if (allDevices[udid].app_version) blockData.app_version = allDevices[udid].app_version;
+                        if (allDevices[udid].last_active) blockData.last_active = allDevices[udid].last_active;
+                    }
+                    
+                    await blockedRef.child(udid).set(blockData);
+                    showNotification(`🚫 Đã chặn: ${shortUDID}`, 'warning');
+                }
             } catch (error) {
+                console.error('❌ Lỗi toggle block:', error);
                 showNotification('❌ Lỗi: ' + error.message, 'error');
             }
         }
@@ -1414,12 +1346,25 @@
             
             showConfirm(
                 '🗑️ Xóa UDID',
-                `Bạn có chắc muốn xóa UDID này?<br><code style="color: #ffa500;">${udid}</code>`,
+                `Bạn có chắc muốn xóa UDID này khỏi tất cả danh sách?<br><code style="color: #ffa500;">${udid}</code>`,
                 async () => {
                     try {
-                        await devicesRef.child(udid).remove();
+                        const promises = [];
+                        
+                        // Xóa khỏi devices nếu có
+                        if (allDevices[udid]) {
+                            promises.push(devicesRef.child(udid).remove());
+                        }
+                        
+                        // Xóa khỏi blocked_udids nếu có
+                        if (blockedUDIDs[udid]) {
+                            promises.push(blockedRef.child(udid).remove());
+                        }
+                        
+                        await Promise.all(promises);
+                        
                         const shortUDID = udid.length > 16 ? udid.substring(0, 16) + '...' : udid;
-                        showNotification(`🗑️ Đã xóa: ${shortUDID}`);
+                        showNotification(`🗑️ Đã xóa: ${shortUDID}`, 'success');
                     } catch (error) {
                         showNotification('❌ Lỗi: ' + error.message, 'error');
                     }
@@ -1459,10 +1404,32 @@
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
             const udidListEl = document.getElementById('udidList');
             
-            let devices = Object.entries(allDevices).map(([udid, data]) => ({
-                udid,
-                ...data
-            }));
+            // Tạo danh sách tổng hợp từ cả devices và blocked_udids
+            const allUDIDs = new Set([
+                ...Object.keys(allDevices),
+                ...Object.keys(blockedUDIDs)
+            ]);
+            
+            let devices = [];
+            allUDIDs.forEach(udid => {
+                const deviceData = allDevices[udid] || {};
+                const blockedData = blockedUDIDs[udid] || {};
+                const isBlocked = isUDIDBlocked(udid);
+                
+                devices.push({
+                    udid: udid,
+                    blocked: isBlocked,
+                    blockReason: getBlockReason(udid),
+                    app_version: deviceData.app_version || blockedData.app_version || null,
+                    last_active: deviceData.last_active || blockedData.last_active || null,
+                    registered_at: deviceData.registered_at || null,
+                    active: deviceData.active !== false,
+                    blocked_at: blockedData.blocked_at || null,
+                    blocked_by: blockedData.blocked_by || null,
+                    inDevices: !!allDevices[udid],
+                    inBlocked: !!blockedUDIDs[udid]
+                });
+            });
 
             // Lọc theo từ khóa
             if (searchTerm) {
@@ -1472,7 +1439,7 @@
                 );
             }
 
-            // Sắp xếp: blocked lên trước
+            // Sắp xếp: blocked lên trước, sau đó theo thời gian
             devices.sort((a, b) => {
                 if (a.blocked && !b.blocked) return -1;
                 if (!a.blocked && b.blocked) return 1;
@@ -1480,9 +1447,9 @@
             });
 
             // Cập nhật thống kê
-            const totalDevices = Object.keys(allDevices).length;
-            const blockedDevices = Object.values(allDevices).filter(d => d.blocked).length;
-            const activeDevices = Object.values(allDevices).filter(d => d.active !== false).length;
+            const totalDevices = allUDIDs.size;
+            const blockedDevices = Object.keys(blockedUDIDs).length;
+            const activeDevices = devices.filter(d => !d.blocked && d.inDevices).length;
 
             document.getElementById('totalCount').textContent = totalDevices;
             document.getElementById('blockedCount').textContent = blockedDevices;
@@ -1491,7 +1458,7 @@
             // Cập nhật thời gian
             const now = new Date();
             document.getElementById('lastUpdate').textContent = 
-                `🕐 Cập nhật lần cuối: ${now.toLocaleTimeString('vi-VN')} | Tổng: ${totalDevices} thiết bị`;
+                `🕐 Cập nhật: ${now.toLocaleTimeString('vi-VN')} | Thiết bị: ${totalDevices} | Đã chặn: ${blockedDevices}`;
 
             // Render danh sách
             if (devices.length === 0) {
@@ -1507,20 +1474,47 @@
                 return;
             }
 
-            udidListEl.innerHTML = devices.map(device => `
-                <div class="udid-item ${device.blocked ? 'blocked' : 'active'}">
+            udidListEl.innerHTML = devices.map(device => {
+                const statusClass = device.blocked ? 'blocked' : 'active';
+                const statusText = device.blocked ? '🚫 Đã chặn' : '✅ Hoạt động';
+                const statusBadgeClass = device.blocked ? 'status-blocked' : 'status-active';
+                
+                // Thông tin block
+                let blockInfoHTML = '';
+                if (device.blocked && device.blockReason) {
+                    blockInfoHTML = `<span class="blocked-badge">${device.blockReason}</span>`;
+                }
+                if (device.blocked && device.blocked_by) {
+                    blockInfoHTML += `<span class="blocked-badge" style="background: rgba(255,165,0,0.2); color: #ffa500;">bởi: ${device.blocked_by}</span>`;
+                }
+                
+                // Badge nguồn dữ liệu
+                let sourceBadge = '';
+                if (device.inDevices && device.inBlocked) {
+                    sourceBadge = '<span style="font-size: 10px; color: #888;">📱🚫</span>';
+                } else if (device.inBlocked && !device.inDevices) {
+                    sourceBadge = '<span style="font-size: 10px; color: #ffa500;">⚠️ Chỉ trong blocked</span>';
+                }
+                
+                return `
+                <div class="udid-item ${statusClass}">
                     <div class="udid-info">
-                        <div class="udid-text">📱 ${device.udid}</div>
+                        <div class="udid-text">
+                            📱 ${device.udid}
+                            ${sourceBadge}
+                        </div>
                         <div class="udid-details">
-                            <span class="udid-detail-item">🕐 ${formatTime(device.last_active)}</span>
+                            ${device.last_active ? `<span class="udid-detail-item">🕐 ${formatTime(device.last_active)}</span>` : ''}
                             ${device.app_version ? `<span class="udid-detail-item">📦 v${device.app_version}</span>` : ''}
                             ${device.registered_at ? `<span class="udid-detail-item">📅 ĐK: ${formatTime(device.registered_at)}</span>` : ''}
+                            ${device.blocked_at ? `<span class="udid-detail-item">🚫 Chặn: ${formatTime(device.blocked_at)}</span>` : ''}
+                        </div>
+                        <div style="margin-top: 3px;">
+                            ${blockInfoHTML}
                         </div>
                     </div>
                     <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-                        <span class="udid-status ${device.blocked ? 'status-blocked' : 'status-active'}">
-                            ${device.blocked ? '🚫 Đã chặn' : '✅ Hoạt động'}
-                        </span>
+                        <span class="udid-status ${statusBadgeClass}">${statusText}</span>
                         <div class="udid-actions">
                             ${device.blocked ? 
                                 `<button class="btn-action btn-unblock" onclick="toggleBlock('${device.udid}')">🔓 Mở khóa</button>` :
@@ -1530,7 +1524,8 @@
                         </div>
                     </div>
                 </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         // ============================================================
@@ -1540,7 +1535,8 @@
 
         document.addEventListener('keydown', function(e) {
             // Bỏ qua nếu đang ở màn hình đăng nhập
-            if (document.getElementById('authOverlay').style.display !== 'none') return;
+            const authOverlay = document.getElementById('authOverlay');
+            if (authOverlay && authOverlay.style.display !== 'none') return;
             
             if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
                 e.preventDefault();
@@ -1555,6 +1551,25 @@
         });
 
         // ============================================================
+        // CẬP NHẬT TRẠNG THÁI KẾT NỐI
+        // ============================================================
+        function updateConnectionStatus() {
+            const statusEl = document.getElementById('connectionStatus');
+            const statusDot = document.getElementById('statusDot');
+            const statusText = document.getElementById('statusText');
+
+            if (isConnected) {
+                statusEl.className = 'connection-status status-connected';
+                statusDot.className = 'status-dot dot-connected';
+                statusText.textContent = 'Đã kết nối';
+            } else {
+                statusEl.className = 'connection-status status-disconnected';
+                statusDot.className = 'status-dot dot-disconnected';
+                statusText.textContent = 'Mất kết nối';
+            }
+        }
+
+        // ============================================================
         // KHỞI TẠO
         // ============================================================
         window.addEventListener('DOMContentLoaded', () => {
@@ -1562,6 +1577,9 @@
             console.log('🔒 Hệ thống quản lý UDID đã sẵn sàng');
             console.log('📡 Firebase URL:', firebaseConfig.databaseURL);
             console.log('🔐 Authentication: Đã kích hoạt');
+            console.log('📁 Cấu trúc dữ liệu:');
+            console.log('   - devices/: danh sách thiết bị đăng ký');
+            console.log('   - blocked_udids/: danh sách UDID bị chặn');
         });
 
         // Tự động kiểm tra kết nối
