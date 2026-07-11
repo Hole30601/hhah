@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý UDID - Firebase Realtime</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        h1 {
+            font-size: 28px;
+            background: linear-gradient(90deg, #ff6b6b, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .status-connected {
+            background: rgba(46, 213, 115, 0.2);
+            color: #2ed573;
+            border: 1px solid rgba(46, 213, 115, 0.3);
+        }
+
+        .status-disconnected {
+            background: rgba(255, 71, 87, 0.2);
+            color: #ff4757;
+            border: 1px solid rgba(255, 71, 87, 0.3);
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .dot-connected {
+            background: #2ed573;
+            box-shadow: 0 0 10px #2ed573;
+        }
+
+        .dot-disconnected {
+            background: #ff4757;
+            box-shadow: 0 0 10px #ff4757;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 25px;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 15px 25px;
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 5px;
+        }
+
+        .stat-blocked .stat-number { color: #ff4757; }
+        .stat-active .stat-number { color: #2ed573; }
+        .stat-total .stat-number { color: #ffa500; }
+
+        .search-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 50px 14px 20px;
+            border-radius: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #ffa500;
+            box-shadow: 0 0 20px rgba(255, 165, 0, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: #888;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            pointer-events: none;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 30px;
+            border: none;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        .btn-block-all {
+            background: linear-gradient(135deg, #ff4757, #ff3838);
+            color: white;
+            flex: 1;
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+        }
+
+        .btn-block-all:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 71, 87, 0.5);
+        }
+
+        .btn-unblock-all {
+            background: linear-gradient(135deg, #2ed573, #1abc9c);
+            color: white;
+            flex: 1;
+            box-shadow: 0 4px 15px rgba(46, 213, 115, 0.3);
+        }
+
+        .btn-unblock-all:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(46, 213, 115, 0.5);
+        }
+
+        .btn-refresh {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-refresh:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .loading-container {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.1);
+            border-top: 4px solid #ffa500;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .udid-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        .udid-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .udid-list::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .udid-list::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+
+        .udid-item {
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            animation: fadeIn 0.5s ease;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .udid-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .udid-item.blocked {
+            border-left: 4px solid #ff4757;
+            background: rgba(255, 71, 87, 0.1);
+        }
+
+        .udid-item.active {
+            border-left: 4px solid #2ed573;
+        }
+
+        .udid-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .udid-text {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #ddd;
+            word-break: break-all;
+            font-weight: 600;
+        }
+
+        .udid-details {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            font-size: 11px;
+            color: #aaa;
+        }
+
+        .udid-detail-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .udid-status {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 3px 10px;
+            border-radius: 10px;
+        }
+
+        .status-blocked {
+            background: rgba(255, 71, 87, 0.2);
+            color: #ff4757;
+        }
+
+        .status-active {
+            background: rgba(46, 213, 115, 0.2);
+            color: #2ed573;
+        }
+
+        .udid-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-action {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: none;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .btn-action:active {
+            transform: scale(0.9);
+        }
+
+        .btn-block {
+            background: #ff4757;
+            color: white;
+        }
+
+        .btn-block:hover {
+            background: #ff3838;
+            box-shadow: 0 2px 10px rgba(255, 71, 87, 0.4);
+        }
+
+        .btn-unblock {
+            background: #2ed573;
+            color: white;
+        }
+
+        .btn-unblock:hover {
+            background: #1abc9c;
+            box-shadow: 0 2px 10px rgba(46, 213, 115, 0.4);
+        }
+
+        .btn-delete {
+            background: rgba(255, 255, 255, 0.1);
+            color: #aaa;
+        }
+
+        .btn-delete:hover {
+            background: rgba(255, 71, 87, 0.3);
+            color: #ff4757;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+
+        .empty-state .icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            max-width: 400px;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .notification.success { background: #2ed573; }
+        .notification.error { background: #ff4757; }
+        .notification.info { background: #3498db; }
+
+        .confirm-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .confirm-modal {
+            background: #1a1a2e;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .confirm-modal h3 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .confirm-modal p {
+            margin-bottom: 20px;
+            color: #ccc;
+            line-height: 1.5;
+        }
+
+        .confirm-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .confirm-btn-yes {
+            padding: 10px 24px;
+            border-radius: 25px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            background: #ff4757;
+            color: white;
+            font-size: 14px;
+        }
+
+        .confirm-btn-no {
+            padding: 10px 24px;
+            border-radius: 25px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 14px;
+        }
+
+        .error-container {
+            text-align: center;
+            padding: 40px;
+            color: #ff4757;
+        }
+
+        .error-container .icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .last-update {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .udid-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .udid-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+            
+            .btn {
+                padding: 10px 16px;
+                font-size: 13px;
+            }
+            
+            .stats {
+                flex-direction: column;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔒 Quản Lý UDID</h1>
+            <div class="connection-status status-disconnected" id="connectionStatus">
+                <span class="status-dot dot-disconnected" id="statusDot"></span>
+                <span id="statusText">Đang kết nối...</span>
+            </div>
+        </div>
+        
+        <p style="color: #aaa; margin-bottom: 20px; font-size: 14px; text-align: center;">
+            Kết nối tới Firebase Realtime Database
+        </p>
+
+        <div class="stats">
+            <div class="stat-card stat-total">
+                <div class="stat-number" id="totalCount">0</div>
+                <div class="stat-label">📱 Tổng số</div>
+            </div>
+            <div class="stat-card stat-blocked">
+                <div class="stat-number" id="blockedCount">0</div>
+                <div class="stat-label">🚫 Đã chặn</div>
+            </div>
+            <div class="stat-card stat-active">
+                <div class="stat-number" id="activeCount">0</div>
+                <div class="stat-label">✅ Hoạt động</div>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <input type="text" class="search-input" id="searchInput" placeholder="🔍 Tìm kiếm UDID...">
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <div class="btn-container">
+            <button class="btn btn-block-all" onclick="confirmBlockAll()">
+                🚫 Chặn tất cả
+            </button>
+            <button class="btn btn-unblock-all" onclick="confirmUnblockAll()">
+                ✅ Mở khóa tất cả
+            </button>
+            <button class="btn btn-refresh" onclick="fetchDevices()">
+                🔄 Làm mới
+            </button>
+        </div>
+
+        <div id="udidList">
+            <div class="loading-container">
+                <div class="spinner"></div>
+                <p>Đang tải dữ liệu từ Firebase...</p>
+            </div>
+        </div>
+
+        <div class="last-update" id="lastUpdate"></div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+    <script>
+        // Cấu hình Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCkJkH4nC0kNFbljDLbE-KK3D0HcPql6zI",
+            authDomain: "dbanand-73d4b.firebaseapp.com",
+            databaseURL: "https://dbanand-73d4b-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "dbanand-73d4b",
+            storageBucket: "dbanand-73d4b.appspot.com",
+            messagingSenderId: "654059132113",
+            appId: "1:654059132113:web:4b2f8e9c0d1a7f5b6c8d9e"
+        };
+
+        // Khởi tạo Firebase
+        let database;
+        let devicesRef;
+        let allDevices = {};
+        let isConnected = false;
+
+        function initializeFirebase() {
+            try {
+                firebase.initializeApp(firebaseConfig);
+                database = firebase.database();
+                devicesRef = database.ref('devices');
+                
+                // Lắng nghe trạng thái kết nối
+                const connectedRef = database.ref('.info/connected');
+                connectedRef.on('value', (snap) => {
+                    isConnected = snap.val() === true;
+                    updateConnectionStatus();
+                });
+
+                // Lắng nghe thay đổi realtime từ Firebase
+                devicesRef.on('value', (snapshot) => {
+                    const data = snapshot.val();
+                    allDevices = data || {};
+                    renderUDIDList();
+                    updateConnectionStatus();
+                }, (error) => {
+                    console.error('Lỗi Firebase:', error);
+                    showNotification('❌ Lỗi kết nối Firebase: ' + error.message, 'error');
+                    document.getElementById('udidList').innerHTML = `
+                        <div class="error-container">
+                            <div class="icon">⚠️</div>
+                            <h3>Không thể kết nối Firebase</h3>
+                            <p style="color: #aaa;">${error.message}</p>
+                            <button class="btn btn-refresh" onclick="fetchDevices()" style="margin-top: 15px;">
+                                🔄 Thử lại
+                            </button>
+                        </div>
+                    `;
+                });
+
+                console.log('✅ Firebase đã được khởi tạo');
+            } catch (error) {
+                console.error('❌ Lỗi khởi tạo Firebase:', error);
+                showNotification('❌ Lỗi khởi tạo: ' + error.message, 'error');
+            }
+        }
+
+        function updateConnectionStatus() {
+            const statusEl = document.getElementById('connectionStatus');
+            const statusDot = document.getElementById('statusDot');
+            const statusText = document.getElementById('statusText');
+
+            if (isConnected) {
+                statusEl.className = 'connection-status status-connected';
+                statusDot.className = 'status-dot dot-connected';
+                statusText.textContent = 'Đã kết nối';
+            } else {
+                statusEl.className = 'connection-status status-disconnected';
+                statusDot.className = 'status-dot dot-disconnected';
+                statusText.textContent = 'Mất kết nối';
+            }
+        }
+
+        // Hiển thị thông báo
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideIn 0.3s ease reverse';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Xác nhận hành động
+        function showConfirm(title, message, onConfirm) {
+            const overlay = document.createElement('div');
+            overlay.className = 'confirm-overlay';
+            overlay.innerHTML = `
+                <div class="confirm-modal">
+                    <h3>${title}</h3>
+                    <p>${message}</p>
+                    <div class="confirm-buttons">
+                        <button class="confirm-btn-yes" id="confirmYes">✅ Xác nhận</button>
+                        <button class="confirm-btn-no" id="confirmNo">❌ Hủy</button>
+                    </div>
+                </div>
+            `;
+
+            document.body.appendChild(overlay);
+
+            document.getElementById('confirmYes').onclick = () => {
+                overlay.remove();
+                onConfirm();
+            };
+
+            document.getElementById('confirmNo').onclick = () => {
+                overlay.remove();
+            };
+
+            overlay.onclick = (e) => {
+                if (e.target === overlay) overlay.remove();
+            };
+        }
+
+        function confirmBlockAll() {
+            const udids = Object.keys(allDevices);
+            const unblockedCount = udids.filter(udid => !allDevices[udid].blocked).length;
+            
+            if (udids.length === 0) {
+                showNotification('❌ Không có UDID nào', 'error');
+                return;
+            }
+            
+            if (unblockedCount === 0) {
+                showNotification('ℹ️ Tất cả UDID đã bị chặn', 'info');
+                return;
+            }
+
+            showConfirm(
+                '⚠️ Chặn tất cả UDID',
+                `Bạn có chắc muốn chặn ${unblockedCount} UDID đang hoạt động?<br>Tổng số UDID: ${udids.length}`,
+                blockAllUDIDs
+            );
+        }
+
+        function confirmUnblockAll() {
+            const udids = Object.keys(allDevices);
+            const blockedCount = udids.filter(udid => allDevices[udid].blocked).length;
+            
+            if (udids.length === 0) {
+                showNotification('❌ Không có UDID nào', 'error');
+                return;
+            }
+            
+            if (blockedCount === 0) {
+                showNotification('ℹ️ Không có UDID nào bị chặn', 'info');
+                return;
+            }
+
+            showConfirm(
+                '🔓 Mở khóa tất cả UDID',
+                `Bạn có chắc muốn mở khóa ${blockedCount} UDID đang bị chặn?<br>Tổng số UDID: ${udids.length}`,
+                unblockAllUDIDs
+            );
+        }
+
+        async function blockAllUDIDs() {
+            try {
+                const updates = {};
+                for (let udid in allDevices) {
+                    if (!allDevices[udid].blocked) {
+                        updates[`devices/${udid}/blocked`] = true;
+                        updates[`devices/${udid}/banned`] = true;
+                        updates[`devices/${udid}/kill_switch`] = true;
+                    }
+                }
+
+                if (Object.keys(updates).length > 0) {
+                    await database.ref().update(updates);
+                    showNotification(`✅ Đã chặn thành công ${Object.keys(updates).length / 3} UDID`);
+                }
+            } catch (error) {
+                showNotification('❌ Lỗi: ' + error.message, 'error');
+            }
+        }
+
+        async function unblockAllUDIDs() {
+            try {
+                const updates = {};
+                for (let udid in allDevices) {
+                    if (allDevices[udid].blocked) {
+                        updates[`devices/${udid}/blocked`] = false;
+                        updates[`devices/${udid}/banned`] = false;
+                        updates[`devices/${udid}/kill_switch`] = false;
+                    }
+                }
+
+                if (Object.keys(updates).length > 0) {
+                    await database.ref().update(updates);
+                    showNotification(`✅ Đã mở khóa thành công ${Object.keys(updates).length / 3} UDID`);
+                }
+            } catch (error) {
+                showNotification('❌ Lỗi: ' + error.message, 'error');
+            }
+        }
+
+        async function toggleBlock(udid) {
+            try {
+                const device = allDevices[udid];
+                const newBlockedState = !device.blocked;
+                
+                const updates = {
+                    [`devices/${udid}/blocked`]: newBlockedState,
+                    [`devices/${udid}/banned`]: newBlockedState,
+                    [`devices/${udid}/kill_switch`]: newBlockedState
+                };
+                
+                await database.ref().update(updates);
+                
+                const status = newBlockedState ? 'đã chặn' : 'đã mở khóa';
+                const shortUDID = udid.length > 16 ? udid.substring(0, 16) + '...' : udid;
+                showNotification(`✅ Đã ${status}: ${shortUDID}`);
+            } catch (error) {
+                showNotification('❌ Lỗi: ' + error.message, 'error');
+            }
+        }
+
+        async function deleteUDID(udid) {
+            showConfirm(
+                '🗑️ Xóa UDID',
+                `Bạn có chắc muốn xóa UDID này?<br><code style="color: #ffa500;">${udid}</code>`,
+                async () => {
+                    try {
+                        await devicesRef.child(udid).remove();
+                        const shortUDID = udid.length > 16 ? udid.substring(0, 16) + '...' : udid;
+                        showNotification(`🗑️ Đã xóa: ${shortUDID}`);
+                    } catch (error) {
+                        showNotification('❌ Lỗi: ' + error.message, 'error');
+                    }
+                }
+            );
+        }
+
+        function formatTime(timestamp) {
+            if (!timestamp) return 'N/A';
+            const date = new Date(timestamp * 1000);
+            const now = new Date();
+            const diff = now - date;
+            
+            if (diff < 60000) return 'Vừa xong';
+            if (diff < 3600000) return `${Math.floor(diff / 60000)} phút trước`;
+            if (diff < 86400000) return `${Math.floor(diff / 3600000)} giờ trước`;
+            if (diff < 2592000000) return `${Math.floor(diff / 86400000)} ngày trước`;
+            
+            return date.toLocaleDateString('vi-VN', { 
+                day: '2-digit', 
+                month: '2-digit', 
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function renderUDIDList() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const udidListEl = document.getElementById('udidList');
+            
+            let devices = Object.entries(allDevices).map(([udid, data]) => ({
+                udid,
+                ...data
+            }));
+
+            // Lọc theo từ khóa
+            if (searchTerm) {
+                devices = devices.filter(device => 
+                    device.udid.toLowerCase().includes(searchTerm) ||
+                    (device.app_version && device.app_version.toLowerCase().includes(searchTerm))
+                );
+            }
+
+            // Sắp xếp: blocked lên trước
+            devices.sort((a, b) => {
+                if (a.blocked && !b.blocked) return -1;
+                if (!a.blocked && b.blocked) return 1;
+                return (b.last_active || 0) - (a.last_active || 0);
+            });
+
+            // Cập nhật thống kê
+            const totalDevices = Object.keys(allDevices).length;
+            const blockedDevices = Object.values(allDevices).filter(d => d.blocked).length;
+            const activeDevices = Object.values(allDevices).filter(d => d.active !== false).length;
+
+            document.getElementById('totalCount').textContent = totalDevices;
+            document.getElementById('blockedCount').textContent = blockedDevices;
+            document.getElementById('activeCount').textContent = activeDevices;
+
+            // Cập nhật thời gian
+            const now = new Date();
+            document.getElementById('lastUpdate').textContent = 
+                `🕐 Cập nhật lần cuối: ${now.toLocaleTimeString('vi-VN')} | Tổng: ${totalDevices} thiết bị`;
+
+            // Render danh sách
+            if (devices.length === 0) {
+                udidListEl.innerHTML = searchTerm ? 
+                    `<div class="empty-state">
+                        <div class="icon">🔍</div>
+                        <p>Không tìm thấy UDID phù hợp với "${searchTerm}"</p>
+                    </div>` :
+                    `<div class="empty-state">
+                        <div class="icon">📱</div>
+                        <p>Chưa có thiết bị nào được đăng ký</p>
+                    </div>`;
+                return;
+            }
+
+            udidListEl.innerHTML = devices.map(device => `
+                <div class="udid-item ${device.blocked ? 'blocked' : 'active'}">
+                    <div class="udid-info">
+                        <div class="udid-text">📱 ${device.udid}</div>
+                        <div class="udid-details">
+                            <span class="udid-detail-item">🕐 ${formatTime(device.last_active)}</span>
+                            ${device.app_version ? `<span class="udid-detail-item">📦 v${device.app_version}</span>` : ''}
+                            ${device.registered_at ? `<span class="udid-detail-item">📅 ĐK: ${formatTime(device.registered_at)}</span>` : ''}
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                        <span class="udid-status ${device.blocked ? 'status-blocked' : 'status-active'}">
+                            ${device.blocked ? '🚫 Đã chặn' : '✅ Hoạt động'}
+                        </span>
+                        <div class="udid-actions">
+                            ${device.blocked ? 
+                                `<button class="btn-action btn-unblock" onclick="toggleBlock('${device.udid}')">🔓 Mở khóa</button>` :
+                                `<button class="btn-action btn-block" onclick="toggleBlock('${device.udid}')">🔒 Chặn</button>`
+                            }
+                            <button class="btn-action btn-delete" onclick="deleteUDID('${device.udid}')">🗑️</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Tìm kiếm realtime
+        document.getElementById('searchInput').addEventListener('input', renderUDIDList);
+
+        // Phím tắt
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+                e.preventDefault();
+                document.getElementById('searchInput').focus();
+            }
+            
+            if (e.key === 'Escape') {
+                document.getElementById('searchInput').value = '';
+                renderUDIDList();
+                document.getElementById('searchInput').blur();
+            }
+        });
+
+        // Khởi tạo khi trang load
+        window.addEventListener('DOMContentLoaded', () => {
+            initializeFirebase();
+            console.log('🔒 Hệ thống quản lý UDID đã sẵn sàng');
+            console.log('📡 Firebase URL:', firebaseConfig.databaseURL);
+        });
+
+        // Tự động kiểm tra kết nối
+        setInterval(() => {
+            if (!isConnected) {
+                updateConnectionStatus();
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
